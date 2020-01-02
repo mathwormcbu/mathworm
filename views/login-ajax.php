@@ -16,18 +16,18 @@
     		return;
     	}
     	$my_dataBase->beginTransaction();
-    	$belong = $my_dataBase->from("users")->where('uName',$_POST["inputUsername"])->all();
+    	$belong = $my_dataBase->from("users")->where('userName',$_POST["inputUsername"])->all();
     	if($belong) {
     		foreach ($belong as $row) {
-    			$logincheck = password_verify($_POST["inputPassword"], $row["uPass"]);
+    			$logincheck = password_verify($_POST["inputPassword"], $row["userPass"]);
     			if($logincheck) {
 					$my_dataBase->commit();
-                    if ($row['uLevel'] === 0) {
-                        $data = [ 'status' => 'success', 'message' => 'Giriş başarı ile tamamlandı.3 saniye içerisinde yönlendirileceksiniz.','link' => 'http://localhost/index'];
+                    if ($row['userLevel'] === 0) {
+                        $data = [ 'status' => 'success', 'message' => 'Giriş başarı ile tamamlandı.3 saniye içerisinde yönlendirileceksiniz.','link' => __URLS__ . 'index'];
                     } else {
-                        $data = [ 'status' => 'success', 'message' => 'Giriş başarı ile tamamlandı.3 saniye içerisinde yönlendirileceksiniz.','link' => 'http://localhost/ogretmen'];
+                        $data = [ 'status' => 'success', 'message' => 'Giriş başarı ile tamamlandı.3 saniye içerisinde yönlendirileceksiniz.','link' => __URLS__ . 'ogretmen'];
                     }
-	                setcookie("key",$row['id']);
+	                setcookie("key",$row['userID']);
 				} else {
 					$my_dataBase->rollback();
 					$data = [ 'status' => 'error', 'message' => 'Yanlış şifre girdiniz.'];

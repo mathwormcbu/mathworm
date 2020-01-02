@@ -38,7 +38,7 @@
 					<?php 
 					foreach ($questionCategories as $row) {
 						?>
-						<option value="<?= $row['id']; ?>"><?= $row['name']; ?></option>
+						<option value="<?= $row['questionCategoryID']; ?>"><?= $row['name']; ?></option>
 						<?php
 					}
 					?>

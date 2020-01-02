@@ -4,7 +4,7 @@
     	$postDizi = ['qTxt','qAnsA','qAnsB','qAnsC','qAnsD','qCat','qAns'];
     	for($i=0;$i<count($postDizi);$i++)
     	{
-    		if(strlen(trim($_POST[$postDizi[$i]])) === 0)
+    		if(strlen(trim(strip_tags($_POST[$postDizi[$i]]))) === 0)
     		{
     			$data = ['status'=>'warning','message'=>'Lütfen boş kısımları doldurunuz.'];
     			echo json_encode($data);
